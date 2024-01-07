@@ -5,7 +5,7 @@ export function ErrorMiddleware(
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   if (error instanceof ApiError) {
     return res
