@@ -23,7 +23,6 @@ export const updateCardSchema = z.object({
     .max(255, 'title is long')
     .optional(),
   description: z.string().optional(),
-  status: STATUS.optional(),
 });
 
 export const updateCardOrderSchema = z.object({
@@ -32,7 +31,7 @@ export const updateCardOrderSchema = z.object({
       id: ID,
       status: STATUS,
       order: z.number(),
-    }),
+    })
   ),
 });
 
