@@ -30,7 +30,7 @@ export const updateCardOrderSchema = z.object({
     z.object({
       id: ID,
       status: STATUS,
-      order: z.number(),
+      order: z.number().gte(0),
     })
   ),
 });

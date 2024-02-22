@@ -1,18 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
+import { db } from '../../lib/db';
+import { validateSchema } from '../../lib/validate-schema';
 import {
   createCardSchema,
   deleteCardSchema,
   updateCardOrderSchema,
   updateCardSchema,
-} from '../zod-validation-schema/card-shema';
-import { db } from '../lib/db';
-import { validateSchema } from '../lib/createSafeController';
+} from './schema';
 
 export class CardsController {
   static async getCards(req: Request, res: Response, next: NextFunction) {
     try {
       const cards = await db.card.findMany({ orderBy: { createdAt: 'desc' } });
-      console.log(cards);
       res.status(200).json({ data: cards });
     } catch (error) {
       next(error);
@@ -56,19 +55,21 @@ export class CardsController {
     }
   }
 
-  static async updateCardsOrder(
+  static async updateCardOrder(
     req: Request,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
   ) {
     try {
       const { items } = validateSchema(updateCardOrderSchema, req.body);
-      console.log(items);
+
       const updatedCardsOrder = await db.$transaction(
-        items.map((card) => db.card.update({
-          where: { id: card.id },
-          data: { order: card.order, status: card.status },
-        })),
+        items.map((card) =>
+          db.card.update({
+            where: { id: card.id },
+            data: { order: card.order, status: card.status },
+          })
+        )
       );
       res.status(200).json({ data: updatedCardsOrder });
     } catch (error) {
@@ -80,7 +81,6 @@ export class CardsController {
   static async deleteCard(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = validateSchema(deleteCardSchema, {
-        ...req.body,
         ...req.params,
       });
       const card = await db.card.delete({ where: { id } });

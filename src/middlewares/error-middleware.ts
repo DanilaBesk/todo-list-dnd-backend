@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
-import { ApiError } from '../errors/api-error';
+import { ApiError } from '../lib/errors/api-error';
 
 export function ErrorMiddleware(
   error: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) {
   if (error instanceof ApiError) {
     return res

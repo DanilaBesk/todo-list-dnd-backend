@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { ApiError } from '../errors/api-error';
+import { ApiError } from './errors/api-error';
 
-export const validateSchema = <TInput>(
+export const validateSchema = <TInput, TOutput>(
   schema: z.Schema<TInput>,
-  data: any,
+  data: unknown
 ): TInput => {
   const result = schema.safeParse(data);
   if (!result.success) {

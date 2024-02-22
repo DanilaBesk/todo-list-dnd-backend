@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import { ErrorMiddleware } from './middlewares/error-middleware';
@@ -12,8 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 export const app: Application = express();
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(express.json());
 app.use('/api', router);
 app.use(ErrorMiddleware);
 
