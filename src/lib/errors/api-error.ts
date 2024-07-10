@@ -1,22 +1,32 @@
-import { ZodError } from 'zod';
+import { z, ZodIssue } from 'zod';
 
 export class ApiError extends Error {
   status: number;
+  cause?: unknown;
 
-  errors: string[];
-
-  constructor(status: number, message: string, errors: string[]) {
+  constructor(status: number, message: string, cause?: unknown) {
     super(message);
     this.status = status;
-    this.errors = errors;
+    this.cause = cause;
   }
-
-  static BadRequest(message: string, errors: string[] = []) {
-    return new ApiError(400, message, errors);
+}
+export class ValidationError extends ApiError {
+  constructor(cause?: unknown) {
+    super(400, 'Validation Error', cause);
   }
-
-  static ZodValidationError(error: ZodError) {
-    const errors = error.errors?.map((err) => err.message);
-    return new ApiError(400, 'Validation Error', errors);
+}
+export class BadRequestError extends ApiError {
+  constructor(message: string, cause?: unknown) {
+    super(400, message, cause);
+  }
+}
+export class DataBaseError extends ApiError {
+  constructor(message: string, cause?: unknown) {
+    super(500, message, cause);
+  }
+}
+export class InternalError extends ApiError {
+  constructor(message: string, cause?: unknown) {
+    super(500, message, cause);
   }
 }

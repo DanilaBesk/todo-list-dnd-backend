@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "ES2022",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "outDir": "dist"
+    "types": ["node", "jest", "supertest", "express", "cors"]
   },
-  "include": ["src", "tests"],
-  "exclude": ["node_modules"]
+  "include": ["src", "config"],
+  "exclude": ["node_modules"],
+  "extends": "./tsconfig.paths.json"
 }
