@@ -60,3 +60,11 @@ npm run dev
 Для этого проекта написаны следующие тесты:
 
 - Юнит тесты: `validate-data.ts`, `error-middleware.ts`, `handle-prisma-error.ts`, `cards.controller.ts` и `cards.service.ts`.
+
+## .Env
+
+В проекте используется 3 типа файла .env:
+
+- `.env.development` для разработки
+- `.env.production` для продакшена
+- `.env.test` для тестов
