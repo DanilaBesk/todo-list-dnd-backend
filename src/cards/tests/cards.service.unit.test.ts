@@ -1,9 +1,8 @@
-import { Card, Prisma } from '@prisma/client';
-import { prismaMock } from '#/lib/__mocks__/prisma';
-import prisma from '#/lib/prisma';
 import { CardsService } from '#/cards/cards.service';
+import { prismaMock } from '#/lib/__mocks__/prisma';
 import { handlePrismaError } from '#/lib/errors/handle-prisma-error';
-import { TUpdateCardOrder } from '../cards.shemas';
+import { Card, Prisma } from '@prisma/client';
+import { TUpdateCardOrder } from '#/cards/cards.schemas';
 
 jest.mock('#/lib/errors/handle-prisma-error', () => ({
   __esModule: true,

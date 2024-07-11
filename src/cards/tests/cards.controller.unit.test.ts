@@ -1,20 +1,16 @@
-import { Request, Response, NextFunction } from 'express';
-import { Card } from '@prisma/client';
 import { CardsController } from '#/cards/cards.controller';
-import { CardsService } from '#/cards/cards.service';
-import { validateData } from '#/lib/validate-data';
 import {
   CreateCardSchema,
   DeleteCardSchema,
   TUpdateCardOrder,
   UpdateCardOrderSchema,
   UpdateCardSchema,
-} from '#/cards/cards.shemas';
-import {
-  ValidationError,
-  BadRequestError,
-  DataBaseError,
-} from '#/lib/errors/api-error';
+} from '#/cards/cards.schemas';
+import { CardsService } from '#/cards/cards.service';
+import { DataBaseError, ValidationError } from '#/lib/errors/api-error';
+import { validateData } from '#/lib/validate-data';
+import { Card } from '@prisma/client';
+import { NextFunction, Request, Response } from 'express';
 
 jest.mock('#/cards/cards.service', () => ({
   __esModule: true,

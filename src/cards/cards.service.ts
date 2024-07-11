@@ -3,8 +3,7 @@ import {
   TDeleteCard,
   TUpdateCard,
   TUpdateCardOrder,
-} from '#/cards/cards.shemas';
-import { DataBaseError } from '#/lib/errors/api-error';
+} from '#/cards/cards.schemas';
 import { handlePrismaError } from '#/lib/errors/handle-prisma-error';
 import prisma from '#/lib/prisma';
 

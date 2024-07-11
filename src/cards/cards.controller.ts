@@ -1,12 +1,12 @@
-import { NextFunction, Request, Response } from 'express';
-import { CardsService } from '#/cards/cards.service';
 import {
   CreateCardSchema,
   DeleteCardSchema,
   UpdateCardOrderSchema,
   UpdateCardSchema,
-} from '#/cards/cards.shemas';
+} from '#/cards/cards.schemas';
+import { CardsService } from '#/cards/cards.service';
 import { validateData } from '#/lib/validate-data';
+import { NextFunction, Request, Response } from 'express';
 export class CardsController {
   static async getCards(req: Request, res: Response, next: NextFunction) {
     try {

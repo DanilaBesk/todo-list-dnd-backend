@@ -1,8 +1,8 @@
-import { DESCRIPTION, ID, STATUS, TITLE } from '#/cards/cards.shemas';
+import { DESCRIPTION, ID, STATUS, TITLE } from '#/cards/cards.schemas';
 import { ValidationError } from '#/lib/errors/api-error';
 import { validateData } from '#/lib/validate-data';
 import { Request } from 'express';
-import { z, ZodError } from 'zod';
+import { z } from 'zod';
 
 describe('validateData', () => {
   let req: Request;
