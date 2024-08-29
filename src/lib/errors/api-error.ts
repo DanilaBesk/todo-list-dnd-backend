@@ -1,5 +1,3 @@
-import { z, ZodIssue } from 'zod';
-
 export class ApiError extends Error {
   status: number;
   cause?: unknown;
